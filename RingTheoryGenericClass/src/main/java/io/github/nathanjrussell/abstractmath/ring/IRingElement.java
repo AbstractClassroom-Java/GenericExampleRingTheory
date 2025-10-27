@@ -5,5 +5,4 @@ public interface IRingElement<T extends IRingElement<T>> {
     T multiply(T other);
     T negate();
     T additiveIdentity();
-    T multiplicativeIdentity();
 }
