@@ -8,7 +8,7 @@ import io.github.nathanjrussell.abstractmath.utility;
 public class ZModNZRing {
     int modulus;
     ZModNZRingElement[] elements;
-
+//silly
 
     public ZModNZRing(int modulus) {
         if (modulus <= 0) {
