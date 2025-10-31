@@ -48,4 +48,15 @@ public class Matrix<T extends IRingElement<T>> implements IRingElement<Matrix<T>
         }
         return result;
     }
+
+
+    public Matrix<T> addScalar(T scalar) {
+        Matrix<T> result = new Matrix<>(this.rows, this.cols);
+        for (int i = 0; i < this.rows; i++) {
+            for (int j = 0; j < this.cols; j++) {
+                result.setEntry(i, j, this.getEntry(i, j).add(scalar));
+            }
+        }
+        return result;
+    }
 }
