@@ -33,6 +33,7 @@ public class Polynomial<T extends IRingElement<T>> implements IRingElement<Polyn
         }
         if (degree > this.deg) {
             throw new IllegalArgumentException("Degree exceeds polynomial degree.");
+
         }
     }
 
