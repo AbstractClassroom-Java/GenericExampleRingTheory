@@ -25,27 +25,27 @@ In this project, you will explore several such abstract structures. You will imp
 
 Let’s review the abstract objects you’ll be modeling:
 
-- **Magma** — A magma is a set \( S \) with a binary operation such that:
-  - **Closure:** \( a + b \in S \) for all \( a, b \in S \).
+- **Magma** — A magma is a set $S$ with a binary operation such that:
+  - **Closure:** $a + b \in S$ for all $a, b \in S$.
 
 - **Semigroup** — A semigroup is a magma whose operation is **associative**.
 
-- **Monoid** — A monoid is a semigroup that has an **identity element** \( e \):
-  - \( a + e = a \) for all \( a \in S \).
+- **Monoid** — A monoid is a semigroup that has an **identity element** $e$:
+  - $a + e = a$ for all $a \in S$.
 
 - **Group** — A group is a monoid in which every element has an **inverse**.
 
 - **Abelian Group** — A group that is also **commutative**.
 
-- **Ring** — A ring is a set with two operations, \( + \) and \( \cdot \), satisfying:
-  - Under \( + \), the elements form an **abelian group**.
-  - The operation \( \cdot \) is:
+- **Ring** — A ring is a set with two operations, $+$ and $\cdot$, satisfying:
+  - Under $+$, the elements form an **abelian group**.
+  - The operation $\cdot$ is:
     - closed,
     - associative, and
-    - **distributes** over \( + \).
-  - \( a \cdot e = e \) for all \( a \in S \), where \( e \) is the additive identity (behaves like zero).
+    - **distributes** over $+$.
+  - $a \cdot e = e$ for all $a \in S$, where $e$ is the additive identity (behaves like zero).
 
-- **Identity Ring** — A ring with a **multiplicative identity** \( 1 \) such that \( a \cdot 1 = a \) for all \( a \in S \).
+- **Identity Ring** — A ring with a **multiplicative identity** $1$ such that $a \cdot 1 = a$ for all $a \in S$.
 
 - **Field** — A field is a ring in which all nonzero elements have **multiplicative inverses**.
 
