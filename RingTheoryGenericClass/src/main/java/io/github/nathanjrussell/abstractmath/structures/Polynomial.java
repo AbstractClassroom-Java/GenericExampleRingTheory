@@ -10,11 +10,14 @@ public class Polynomial<T extends IRingElement<T>> implements IRingElement<Polyn
     private final List<T> coefficients;
 
 
-    Polynomial(int deg) {
+    public Polynomial(int deg) {
         this.deg = deg;
         validateDegree(deg);
 
-        this.coefficients = new ArrayList<>(deg + 1);
+        this.coefficients = new ArrayList<>();
+        for (int i = 0; i <= deg; i++) {
+            this.coefficients.add(null);
+        }
     }
 
     public void setCoefficient(int degree, T coefficient) {
@@ -24,14 +27,14 @@ public class Polynomial<T extends IRingElement<T>> implements IRingElement<Polyn
 
     public T getCoefficient(int degree) {
         validateDegree(degree);
-        if (degree > this.deg) { return this.getCoefficient(0).additiveIdentity(); }
+        if (degree > this.deg) { return this.coefficients.getFirst().additiveIdentity(); }
         return this.coefficients.get(degree);
     }
 
     public Polynomial<T> additiveIdentity() {
         Polynomial<T> result  = new Polynomial<>(0);
         T identity = this.coefficients.getFirst().additiveIdentity();
-        result.setCoefficient(0, this.coefficients.getFirst());
+        result.setCoefficient(0, identity);
         return result;
     }
 
@@ -50,12 +53,36 @@ public class Polynomial<T extends IRingElement<T>> implements IRingElement<Polyn
         int resultDeg = Math.max(this.deg, other.deg);
         List<T> resultCoeffs = new ArrayList<>(resultDeg + 1);
         for (int i = 0; i <= resultDeg; i++) {
-            T thisCoeff = (i <= this.deg) ? this.getCoefficient(i) : this.getCoefficient(0).additiveIdentity();
-            T otherCoeff = (i <= other.deg) ? other.getCoefficient(i) : other.getCoefficient(0).additiveIdentity();
-            resultCoeffs.add(thisCoeff.add(otherCoeff));
+            resultCoeffs.add(this.getCoefficient(i).add(other.getCoefficient(i)));
         }
+        while (resultDeg > 0 && resultCoeffs.get(resultDeg).equals(this.coefficients.getFirst().additiveIdentity())) {
+            resultDeg--;
+        }
+        Polynomial<T> result = new Polynomial<>(resultDeg);
+        for (int i = 0; i <= resultDeg; i++) {
+            result.setCoefficient(i, resultCoeffs.get(i));
+        }
+        return result;
+    }
 
-
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = deg; i >= 0; i--) {
+            T coeff = getCoefficient(i);
+            if (!coeff.equals(coeff.additiveIdentity())) {
+                if (sb.length() > 0) {
+                    sb.append(" + ");
+                }
+                sb.append("(").append(coeff.toString()).append(")");
+                if (i > 0) {
+                    sb.append("x");
+                    if (i > 1) {
+                        sb.append("^").append(i);
+                    }
+                }
+            }
+        }
+        return sb.toString();
     }
 
 
